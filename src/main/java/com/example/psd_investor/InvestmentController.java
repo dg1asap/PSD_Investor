@@ -17,7 +17,9 @@ public class InvestmentController {
     private String topicName;
 
     public void publishReturnOnInvestment() {
-        String sample = String.valueOf(returnOnInvestmentGenerator.generate());
+        ReturnOnInvestmentDto sample = ReturnOnInvestmentDto.builder()
+                .value(returnOnInvestmentGenerator.generate())
+                .build();
         kafkaTemplate.send(topicName, sample);
     }
 }
